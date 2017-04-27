@@ -1,31 +1,48 @@
 <body>
-  <script src="https://web-packing.com/@cycle/run&@cycle/dom"></script>
-
+  <script src="https://web-packing.com/@cycle/run&@cycle/dom&strip-indent"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+  <style>
+    .source {
+      width: 50em;
+      height: 30em;
+    }
+  </style>
   <section>
     <header><h2>App1</h2></header>
-    <div id="app1"></div>
+
+    <div class="source" id="source1">const {run: Run, dom: DOM } = window.packs
+      const {run} = Run
+      const {div, label, input, hr, h1, makeDOMDriver} = DOM
+      function main(sources) {
+        const input$ = sources.DOM.select('.field').events('input')
+
+        const name$ = input$.map(ev => ev.target.value).startWith('')
+
+        const vdom$ = name$.map(name =>
+          div([
+            label('Name:'),
+            input('.field', {attrs: {
+              type: 'text', placeholder: 'Type your name'}
+            }),
+            h1('Hello ' + (name || 'stranger')+ '!'),
+          ])
+        )
+
+        return { DOM: vdom$ }
+      }
+
+      run(main, { DOM: makeDOMDriver('#app1') })
+    </div>
     <script>
-    const {run: Run, dom: DOM } = window.packs
-
-    const {run} = Run
-    const {div, label, input, hr, h1, makeDOMDriver} = DOM
-    function main(sources) {
-      const input$ = sources.DOM.select('.field').events('input')
-
-      const name$ = input$.map(ev => ev.target.value).startWith('')
-
-      const vdom$ = name$.map(name =>
-        div([
-          label('Name:'),
-          input('.field', {attrs: {type: 'text', placeholder: 'Type your name'}}),
-          h1('Hello ' + (name || 'stranger')+ '!'),
-        ])
-      )
-
-      return { DOM: vdom$ }
-    }
-
-    run(main, { DOM: makeDOMDriver('#app1') })
+      let editor = ace.edit("source1");
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/javascript");
+      editor.getSession().on('change', function(e) {
+        const source = packs.stripIndent(editor.getValue())
+        eval(source)
+      })
     </script>
+
+    <div id="app1"></div>
   </section>
 </body>
