@@ -3,6 +3,12 @@ const examples = document.getElementById('examples')
 
 function addExample (name, initialSource) {
   exampleCount += 1
+  const outputLabel = 'app' + exampleCount
+
+  function setOutputId(source) {
+    const defaultId = 'app1'
+    return source.replace(defaultId, outputLabel)
+  }
 
   const exampleContainer = document.createElement('div')
   exampleContainer.classList.add('example')
@@ -23,19 +29,20 @@ function addExample (name, initialSource) {
   exampleContainer.appendChild(sourceElement)
 
   const appElement = document.createElement('div')
-  appElement.setAttribute('id', 'app1')
+  appElement.setAttribute('id', outputLabel)
   exampleContainer.appendChild(appElement)
 
+  const prepareSource = text => packs.stripIndent(setOutputId(text.trim()))
+
   editor.getSession().on('change', function(e) {
-    const source = packs.stripIndent(editor.getValue())
+    const source = prepareSource(editor.getValue())
     try {
-      console.log('Evaluating example')
       eval(source)
     } catch (e) {
       // do nothing
     }
   })
-  editor.setValue(initialSource.trim())
+  editor.setValue(prepareSource(initialSource))
   editor.getSelection().clearSelection()
 }
 

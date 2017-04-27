@@ -1,3 +1,5 @@
+// uses default "app1" output element id
+
 const inputExample = `
 // grabs @cycle/run and @cycle/dom "magically"
 const {run: Run, dom: DOM } = window.packs
