@@ -1,4 +1,5 @@
 const inputExample = `
+// grabs @cycle/run and @cycle/dom "magically"
 const {run: Run, dom: DOM } = window.packs
 const {run} = Run
 const {div, label, input, hr, h1, makeDOMDriver} = DOM
@@ -11,7 +12,7 @@ function main({DOM}) {
       input('.field', {attrs: {
         type: 'text', placeholder: 'Type your name'}
       }),
-      h1('Hello ' + (name || 'stranger')+ '!'),
+      h1('Hello ' + (name || 'stranger') + '!'),
     ])
   )
 
