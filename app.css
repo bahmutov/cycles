@@ -12,14 +12,35 @@ body {
   overflow: auto;
   min-height: 100vh;
   z-index: 0;
-}
-#examples {
+
   margin: 0 auto;
   max-width: 100%;
   width: 64rem;
   padding: 1.25rem;
   padding-bottom: 6.25rem;
   text-align: center;
+}
+.info {
+  margin: 2rem;
+  text-align: center;
+  font-size: 1.333em;
+  color: #828fb7;
+  line-height: 1.5;
+}
+.info a {
+  color: white;
+}
+.github {
+  display: inline-block;
+  width: auto;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  border-radius: 0.1875rem;
+  background: #828fb7;
+  color: #f8f8f2;
+  margin: 1.875rem 0;
+}
+#examples {
 }
 .source {
   font-size: 0.875rem;
