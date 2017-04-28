@@ -1,0 +1,21 @@
+{
+  "name": "cycles",
+  "version": "1.0.0",
+  "description": "Small live Cycle.js examples",
+  "main": "cycles.js",
+  "private": true,
+  "scripts": {
+    "test": "echo 'No tests yet'",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/cycles.git"
+  },
+  "keywords": ["cycle", "cyclejs", "cycle.js", "demo", "live", "example"],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bahmutov/cycles/issues"
+  },
+  "homepage": "https://github.com/bahmutov/cycles#readme"
+}
