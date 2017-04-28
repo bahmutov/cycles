@@ -20,17 +20,29 @@ function addExample (name, initialSource) {
 
   exampleContainer.appendChild(titleElement)
 
+  const panelElement = document.createElement('div')
+  panelElement.classList.add('panel')
+
+  const sideBySideElement = document.createElement('div')
+  sideBySideElement.classList.add('side-by-side')
+  panelElement.appendChild(sideBySideElement)
+
+  exampleContainer.appendChild(panelElement)
+
   const sourceElement = document.createElement('div')
   sourceElement.classList.add('source')
+  sourceElement.classList.add('side-by-side-half')
 
   const editor = ace.edit(sourceElement);
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/javascript");
-  exampleContainer.appendChild(sourceElement)
+  sideBySideElement.appendChild(sourceElement)
 
   const appElement = document.createElement('div')
   appElement.setAttribute('id', outputLabel)
-  exampleContainer.appendChild(appElement)
+  appElement.classList.add('app')
+  appElement.classList.add('side-by-side-half')
+  sideBySideElement.appendChild(appElement)
 
   const prepareSource = text => packs.stripIndent(setOutputId(text.trim()))
 

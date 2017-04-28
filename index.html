@@ -1,18 +1,15 @@
+<head>
+  <title>Cycles examples</title>
+  <link rel="stylesheet" href="app.css">
+</head>
 <body>
   <script src="https://web-packing.com/@cycle/run&@cycle/dom&strip-indent"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
   <script src="examples.js"></script>
-  <style>
-    .source {
-      width: 50em;
-      height: 30em;
-    }
-    #examples .example .title {
-      font-size: 200%;
-    }
-  </style>
-  <!-- all examples will be appended to the element -->
-  <div id="examples"></div>
+  <div class="root">
+    <!-- all examples will be appended to the element -->
+    <div id="examples"></div>
+  </div>
   <script src="cycles.js"></script>
   <script>
     addExample('Input example', inputExample)
