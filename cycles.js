@@ -52,7 +52,7 @@ function addExample (name, initialSource) { // eslint-disable-line no-unused-var
     try {
       eval(source) // eslint-disable-line no-eval
     } catch (e) {
-      // do nothing
+      console.error(e.message)
     }
   })
   editor.setValue(prepareSource(initialSource))
