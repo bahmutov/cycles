@@ -18,6 +18,28 @@ function main() {
 run(main, { DOM: makeDOMDriver('#app1') });
 `
 
+const checkboxExample = `
+const {run: Run, dom: DOM } = window.packs;
+const xs = window.packs.xstream.default;
+const {run} = Run;
+const {div, p, input, makeDOMDriver} = DOM;
+function main(sources) {
+  const sinks = {
+    DOM: sources.DOM.select('input').events('click')
+      .map(ev => ev.target.checked)
+      .startWith(false)
+      .map(toggled =>
+        div([
+          input({attrs: {type: 'checkbox'}}), 'Toggle me',
+          p(toggled ? 'ON' : 'off')
+        ])
+      )
+  };
+  return sinks;
+}
+run(main, { DOM: makeDOMDriver('#app1') });
+`
+
 const inputExample = `
 const {run: Run, dom: DOM } = window.packs;
 const {run} = Run;
@@ -40,5 +62,6 @@ run(main, { DOM: makeDOMDriver('#app1') });
 `
 
 // add each example to the page
-addExample('Counter', counterExample)
-addExample('Input example 2', inputExample)
+addExample('Send messages from main', counterExample)
+addExample('Catch messages into main', checkboxExample)
+addExample('Input / output example', inputExample)
