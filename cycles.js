@@ -1,11 +1,12 @@
+/* global ace, packs */
 let exampleCount = 0
 const examples = document.getElementById('examples')
 
-function addExample (name, initialSource) {
+function addExample (name, initialSource) { // eslint-disable-line no-unused-vars
   exampleCount += 1
   const outputLabel = 'app' + exampleCount
 
-  function setOutputId(source) {
+  function setOutputId (source) {
     const defaultId = 'app1'
     return source.replace(defaultId, outputLabel)
   }
@@ -33,9 +34,9 @@ function addExample (name, initialSource) {
   sourceElement.classList.add('source')
   sourceElement.classList.add('side-by-side-half')
 
-  const editor = ace.edit(sourceElement);
-  editor.setTheme("ace/theme/monokai");
-  editor.getSession().setMode("ace/mode/javascript");
+  const editor = ace.edit(sourceElement)
+  editor.setTheme('ace/theme/monokai')
+  editor.getSession().setMode('ace/mode/javascript')
   sideBySideElement.appendChild(sourceElement)
 
   const appElement = document.createElement('div')
@@ -46,10 +47,10 @@ function addExample (name, initialSource) {
 
   const prepareSource = text => packs.stripIndent(setOutputId(text.trim()))
 
-  editor.getSession().on('change', function(e) {
+  editor.getSession().on('change', function (e) {
     const source = prepareSource(editor.getValue())
     try {
-      eval(source)
+      eval(source) // eslint-disable-line no-eval
     } catch (e) {
       // do nothing
     }
@@ -57,4 +58,3 @@ function addExample (name, initialSource) {
   editor.setValue(prepareSource(initialSource))
   editor.getSelection().clearSelection()
 }
-
