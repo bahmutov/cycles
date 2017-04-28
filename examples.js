@@ -23,3 +23,7 @@ function main({DOM}) {
 
 run(main, { DOM: makeDOMDriver('#app1') })
 `
+
+// add each example to the page
+addExample('Input example', inputExample)
+addExample('Input example 2', inputExample)
